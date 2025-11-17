@@ -1,0 +1,11 @@
+/* 1. Keep the Import so "About Us" and "Services" still look good */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+/* 2. The Mobile Fixes */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* This is the magic rule that stops horizontal scrolling */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Default font for Navbar/Footer */
+}
