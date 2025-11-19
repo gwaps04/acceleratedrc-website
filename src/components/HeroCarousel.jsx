@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+// We import the Bootstrap Javascript logic directly to force-control it
+import { Carousel } from 'bootstrap';
 
 const HeroCarousel = () => {
-  // We define 6 specific background colors for the placeholders
-  // Format: Hex codes without the '#' (required for the image placeholder API)
   const slides = [
-    { id: 1, color: '007bff', name: 'Blue' },   // Slide 1
-    { id: 2, color: '6610f2', name: 'Purple' }, // Slide 2
-    { id: 3, color: '28a745', name: 'Green' },  // Slide 3
-    { id: 4, color: 'dc3545', name: 'Red' },    // Slide 4
-    { id: 5, color: 'ffc107', name: 'Yellow' }, // Slide 5
-    { id: 6, color: '17a2b8', name: 'Teal' }    // Slide 6
+    { id: 1, image: '/slides/slide-1.png', title: "Welcome to ARC", desc: "Your journey to success starts here." },
+    { id: 2, image: '/slides/slide-2.png', title: "Expert Reviewers", desc: "Learn from the best in the industry." },
+    { id: 3, image: '/slides/slide-3.png', title: "Proven Results", desc: "Producing topnotchers year after year." },
+    { id: 4, image: '/slides/slide-4.png', title: "Modern Facilities", desc: "A conducive environment for learning." },
+    { id: 5, image: '/slides/slide-5.png', title: "Comprehensive Materials", desc: "Everything you need to pass." },
+    { id: 6, image: '/slides/slide-6.png', title: "Join Us Today", desc: "Secure your future with ARC." }
   ];
 
+  // This Hook runs once when the component mounts
+  useEffect(() => {
+    const carouselElement = document.getElementById('heroCarousel');
+    
+    // Create a new Bootstrap Carousel instance with your STRICT rules
+    const carousel = new Carousel(carouselElement, {
+      interval: 4000, // 4 seconds
+      pause: false,   // CRITICAL: "false" means "Do NOT pause on hover"
+      ride: 'carousel'
+    });
+
+    // Force the cycle to start immediately
+    carousel.cycle();
+
+    // Cleanup function (good practice in React)
+    return () => {
+      carousel.dispose();
+    };
+  }, []);
+
   return (
-    <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
+    <div 
+      id="heroCarousel" 
+      className="carousel slide carousel-fade"
+      /* We REMOVED data-bs-ride here because we are handling it in the useEffect above */
+    >
       {/* Indicators */}
       <div className="carousel-indicators">
         {slides.map((slide, index) => (
@@ -32,25 +56,40 @@ const HeroCarousel = () => {
       {/* The Slides */}
       <div className="carousel-inner">
         {slides.map((slide, index) => (
-          <div key={slide.id} className={`carousel-item ${index === 0 ? "active" : ""}`}>
-            <picture>
-              {/* Mobile Image (800x1200) - Using the dynamic color */}
-              <source 
-                media="(max-width: 768px)" 
-                srcSet={`https://placehold.co/800x1200/${slide.color}/FFFFFF?text=Mobile+${slide.name}`} 
-              />
-              {/* Desktop Image (1280x720) - Using the dynamic color */}
+          <div 
+            key={slide.id} 
+            className={`carousel-item ${index === 0 ? "active" : ""}`}
+            // We keep this as a backup
+            data-bs-interval="4000"
+          >
+            <div style={{ height: '85vh', position: 'relative' }}>
               <img 
-                src={`https://placehold.co/1280x720/${slide.color}/FFFFFF?text=Desktop+${slide.name}`} 
-                className="d-block w-100" 
-                alt={`Slide ${slide.name}`} 
-                style={{ objectFit: 'cover', maxHeight: '720px' }}
+                src={slide.image} 
+                className="d-block w-100 h-100" 
+                alt={slide.title} 
+                style={{ objectFit: 'cover' }} 
               />
-            </picture>
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0, left: 0, right: 0, bottom: 0,
+                  backgroundColor: 'rgba(0,0,0,0.4)' 
+                }}
+              ></div>
+            </div>
             
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Slide {slide.id}: {slide.name} Theme</h5>
-              <p>Visualizing different content areas.</p>
+            <div className="carousel-caption d-md-block">
+              <h2 className="display-4 fw-bold">{slide.title}</h2>
+              <p className="lead">{slide.desc}</p>
+              <a 
+                href="https://www.facebook.com/acceleratedPH" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-primary btn-lg mt-3" 
+                style={{ backgroundColor: '#ed4302', border: 'none' }}
+              >
+                Inquire Now
+              </a>
             </div>
           </div>
         ))}

@@ -24,7 +24,7 @@ const Navbar = () => {
              2. If your file is a JPG or has a different name, change the src below.
           */}
           <img 
-            src="/arc-logo.png" 
+            src="/seal-logo.png" 
             alt="Accelerated Review Center Logo" 
             className="img-fluid"
             /* maxHeight: '50px' -> Keeps the navbar slim. 

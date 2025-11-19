@@ -25,8 +25,8 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li className="mb-2">
                 <strong>📍 Address:</strong><br/>
-                3rd Floor, Old Library, Casaul College,<br/>
-                San Juan St., Tabaco City
+                189, Magallanes Street, Brgy. 34, Oro Site<br/>
+                Legazpi City.
               </li>
               <li className="mb-2">
                 <strong>📞 Phone:</strong> 0991-718-1450
