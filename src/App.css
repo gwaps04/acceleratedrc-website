@@ -6,3 +6,24 @@
 }
 
 /* Add any custom adjustments for your carousel here later */
+ 
+/* CAROUSEL CONTROLS */
+
+/* 1. Default (Mobile) - Shorter height to prevent excessive zooming */
+.hero-slide-container {
+  height: 50vh; /* Takes up half the screen on mobile */
+  position: relative;
+  background-color: #000; /* Fallback color while loading */
+}
+
+/* 2. Tablet and Desktop - Taller height for the cinematic look */
+@media (min-width: 768px) {
+  .hero-slide-container {
+    height: 85vh; /* Back to your original tall size for big screens */
+  }
+}
+
+/* Optional: Ensure the image always centers itself */
+.hero-slide-img {
+  object-position: center;
+}

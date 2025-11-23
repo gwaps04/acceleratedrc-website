@@ -38,13 +38,20 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* Image Column (Placeholder) */}
+          {/* Image Column */}
           <div className="col-lg-4 mt-4 mt-lg-0 text-center">
             <img 
-              src="https://placehold.co/400x400/ed4302/FFFFFF?text=Founder+Image" 
+              /* WOZ: CHANGED - Linked to your local file */
+              src="/founder-image.png" 
               alt="Engr. Reggie L. Maigue" 
               className="img-fluid rounded-circle shadow-lg"
-              style={{ maxWidth: '300px', border: `5px solid #fff` }}
+              /* WOZ: ADDED - objectFit ensures the image doesn't stretch if it's not a perfect square */
+              style={{ 
+                width: '300px', 
+                height: '300px', 
+                objectFit: 'cover', 
+                border: '5px solid #fff' 
+              }}
             />
           </div>
         </div>

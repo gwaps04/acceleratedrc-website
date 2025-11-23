@@ -4,12 +4,27 @@ import { Carousel } from 'bootstrap';
 
 const HeroCarousel = () => {
   const slides = [
+    // 1. NEW FIRST SLIDE (Slide 8)
+    { 
+      id: 8, 
+      image: '/slides/slide-8.png', 
+      title: "Latest Highlights", 
+      desc: "Check out our newest updates and features." 
+    },
+    // 2. EXISTING SLIDES (Moved down)
     { id: 1, image: '/slides/slide-1.png', title: "Welcome to ARC", desc: "Your journey to success starts here." },
     { id: 2, image: '/slides/slide-2.png', title: "Expert Reviewers", desc: "Learn from the best in the industry." },
     { id: 3, image: '/slides/slide-3.png', title: "Proven Results", desc: "Producing topnotchers year after year." },
-    { id: 4, image: '/slides/slide-4.png', title: "Modern Facilities", desc: "A conducive environment for learning." },
+    { id: 4, image: '/slides/slide-4.png', title: "Well-Maintained Facilities", desc: "A conducive environment for learning." },
     { id: 5, image: '/slides/slide-5.png', title: "Comprehensive Materials", desc: "Everything you need to pass." },
-    { id: 6, image: '/slides/slide-6.png', title: "Join Us Today", desc: "Secure your future with ARC." }
+    { id: 6, image: '/slides/slide-6.png', title: "Join Us Today", desc: "Secure your future with ARC." },
+    // 3. NEW LAST SLIDE (Slide 7)
+    { 
+      id: 7, 
+      image: '/slides/slide-7.png', 
+      title: "Your Future Awaits", 
+      desc: "Don't miss out on the opportunity to excel." 
+    }
   ];
 
   // This Hook runs once when the component mounts
@@ -62,10 +77,11 @@ const HeroCarousel = () => {
             // We keep this as a backup
             data-bs-interval="4000"
           >
-            <div style={{ height: '85vh', position: 'relative' }}>
+            {/* WOZ: CHANGED - Removed inline 85vh style, added CSS class */}
+            <div className="hero-slide-container">
               <img 
                 src={slide.image} 
-                className="d-block w-100 h-100" 
+                className="d-block w-100 h-100 hero-slide-img" 
                 alt={slide.title} 
                 style={{ objectFit: 'cover' }} 
               />
